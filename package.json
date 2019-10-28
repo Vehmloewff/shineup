@@ -1,0 +1,31 @@
+{
+	"name": "todo",
+	"version": "1.0.0",
+	"description": "TODO: Add description",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest --verbose",
+		"test:watch": "jest --watch --verbose",
+		"format": "prettier --write \"./**\"",
+		"lint": "eslint . && npm run format",
+		"lint:test": "eslint . && npm run format:test",
+		"format:test": "prettier --check \"./**\"",
+		"postversion": "git push && git push --tags && rm -rf build/temp && npm publish"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"eslint": "^6.4.0",
+		"jest": "^24.9.0",
+		"eslint-config-prettier": "^6.3.0",
+		"prettier": "^1.18.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Vehmloewff/todo"
+	},
+	"dependencies": {
+		"debug": "^4.1.1"
+	}
+}
