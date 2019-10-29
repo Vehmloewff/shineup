@@ -266,4 +266,16 @@ describe(`parseJS`, () => {
 			"random-thing"
 		);
 	});
+
+	it(`should still work when there are no params passed`, () => {
+		expect(parseJS()).toMatchObject({});
+	});
+
+	it(`should work when there is only one key:value pair passed`, () => {
+		expect(parseJS({ color: "red" })).toMatchObject({
+			".default": {
+				color: "red",
+			},
+		});
+	});
 });
