@@ -71,7 +71,7 @@ describe(`parseJS`, () => {
 		expect(
 			parseJS({
 				top: "0",
-				"$ h1": {
+				$h1: {
 					left: "0",
 				},
 			})
@@ -90,7 +90,7 @@ describe(`parseJS`, () => {
 			parseJS({
 				foreground: {
 					top: "0",
-					"$ h1": {
+					$h1: {
 						left: "0",
 					},
 				},
@@ -101,6 +101,32 @@ describe(`parseJS`, () => {
 			},
 			".foreground h1": {
 				left: "0",
+			},
+		});
+	});
+
+	it(`should combine the $ to the parent values insde the children`, () => {
+		expect(
+			parseJS({
+				foreground: {
+					top: "0",
+					$h1: {
+						left: "0",
+						".active": {
+							right: "0",
+						},
+					},
+				},
+			})
+		).toMatchObject({
+			".foreground": {
+				top: "0",
+			},
+			".foreground h1": {
+				left: "0",
+			},
+			".foreground h1.active": {
+				right: "0",
 			},
 		});
 	});

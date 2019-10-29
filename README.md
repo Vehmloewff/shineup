@@ -160,16 +160,16 @@ Examples:
 }
 ```
 
-Any keys starting with a `$` whose value is of type object will be appended onto the parent selector.
+Any keys values of type object will be appended onto the parent selector (`$` can optionally replace the space character ``).
 
 ```js
 {
 	"headerInner": {
 		"color": "red",
-		"$ h1": {
+		"$h1": {
 			"color": "green"
 		},
-		"$:hover": {
+		":hover": {
 			"boxShadow": "2px 2px 2px 2px black"
 		}
 	}
@@ -186,13 +186,13 @@ Any keys starting with a `$` whose value is of type object will be appended onto
 }
 ```
 
-Any keys starting with `&` whose value is of type `function` will be called with a { parent: object, key: string } paramater, and the result of that function assigned to the parent.
+Any of type `function` will be called with a { parent: object, key: string } paramater, and the result of that function assigned to the parent.
 
 ```js
 {
 	"headerInner": {
-		"color": "red",
-		"&boxShadow": ({ parent, key }) => {
+		color: "red",
+		boxShadow: ({ parent, key }) => {
 			if (!parent.boxShadow && !parent["box-shadow"]) {
 				return {
 					boxShadow: "2px 2px 2px 2px black",
