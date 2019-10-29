@@ -186,7 +186,7 @@ Any keys values of type object will be appended onto the parent selector (`$` ca
 }
 ```
 
-Any values of type `function` will be called with a { obj: object, parent: object, key: string, element: HTMLElement } paramater.
+Any values of type `function` will be called with a `{ obj: object, parent: object, key: string, id: string, className: string, querySelector: string }` paramater.
 
 ```js
 {
