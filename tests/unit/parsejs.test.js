@@ -148,4 +148,32 @@ describe(`parseJS`, () => {
 			},
 		});
 	});
+
+	it(`must call functions and populate the parent with the result in a recursive manner`, () => {
+		expect(
+			parseJS({
+				foreground: {
+					top: "0",
+					$h1: () => {
+						return {
+							color: "red",
+							border: "1px solid green",
+							background: () => {
+								return "blue";
+							},
+						};
+					},
+				},
+			})
+		).toMatchObject({
+			".foreground": {
+				top: "0",
+			},
+			".foreground h1": {
+				color: "red",
+				border: "1px solid green",
+				background: "blue",
+			},
+		});
+	});
 });
