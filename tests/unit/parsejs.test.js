@@ -278,4 +278,9 @@ describe(`parseJS`, () => {
 			},
 		});
 	});
+
+	it(`should throw when types are invalid`, () => {
+		expect(() => parseJS("", "")).toThrow();
+		expect(() => parseJS({}, 0)).toThrow();
+	});
 });
