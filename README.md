@@ -186,7 +186,7 @@ Any keys values of type object will be appended onto the parent selector (`$` ca
 }
 ```
 
-Any of type `function` will be called with a { parent: object, key: string } paramater, and the result of that function assigned to the parent.
+Any values of type `function` will be called with a { parent: object, key: string } paramater.
 
 ```js
 {
@@ -194,9 +194,7 @@ Any of type `function` will be called with a { parent: object, key: string } par
 		color: "red",
 		boxShadow: ({ parent, key }) => {
 			if (!parent.boxShadow && !parent["box-shadow"]) {
-				return {
-					boxShadow: "2px 2px 2px 2px black",
-				}
+				return "2px 2px 2px 2px black";
 			}
 		}
 	}

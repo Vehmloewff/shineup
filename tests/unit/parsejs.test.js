@@ -130,4 +130,22 @@ describe(`parseJS`, () => {
 			},
 		});
 	});
+
+	it(`must call functions and populate the parent with the result`, () => {
+		expect(
+			parseJS({
+				foreground: {
+					top: "0",
+					background: () => {
+						return "red";
+					},
+				},
+			})
+		).toMatchObject({
+			".foreground": {
+				top: "0",
+				background: "red",
+			},
+		});
+	});
 });
