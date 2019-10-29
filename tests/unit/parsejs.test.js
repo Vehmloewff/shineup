@@ -223,36 +223,47 @@ describe(`parseJS`, () => {
 	});
 
 	describe(`parseJS should pass in three arguments to the functions of the right type`, () => {
-		parseJS({
-			top: "0",
-			right: "0",
-			left: function func({ obj, parent, key, element }) {
-				it(`obj should match the entire object passed in`, () => {
-					expect(obj).toMatchObject({
-						".default": {
+		parseJS(
+			{
+				top: "0",
+				right: "0",
+				left: function func({ obj, parent, key, id, className, querySelector }) {
+					it(`obj should match the entire object passed in`, () => {
+						expect(obj).toMatchObject({
+							".default": {
+								top: "0",
+								right: "0",
+								left: func,
+							},
+						});
+					});
+
+					it(`parent should match the parent obj`, () => {
+						expect(parent).toMatchObject({
 							top: "0",
 							right: "0",
 							left: func,
-						},
+						});
 					});
-				});
 
-				it(`parent should match the parent obj`, () => {
-					expect(parent).toMatchObject({
-						top: "0",
-						right: "0",
-						left: func,
+					it(`key should match the key`, () => {
+						expect(key).toBe("left");
 					});
-				});
 
-				it(`key should match the key`, () => {
-					expect(key).toBe("left");
-				});
+					it(`id should be valid`, () => {
+						expect(id).toBe("random-thing");
+					});
 
-				it(`element should be a DOM element`, () => {
-					expect(isDOM(element)).toBe(true);
-				});
+					it(`className should be the selector`, () => {
+						expect(className).toBe("default");
+					});
+
+					it(`querySelector should be the id + the class`, () => {
+						expect(querySelector).toBe("." + id + "." + className);
+					});
+				},
 			},
-		});
+			"random-thing"
+		);
 	});
 });
