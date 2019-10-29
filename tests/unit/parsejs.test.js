@@ -1,4 +1,5 @@
 const parseJS = require("../../lib/parsejs");
+const isDOM = require("is-dom");
 
 describe(`parseJS`, () => {
 	it(`it should return a css obj`, () => {
@@ -217,6 +218,40 @@ describe(`parseJS`, () => {
 				right: "0",
 				left: "0",
 				bottom: "0",
+			},
+		});
+	});
+
+	describe(`parseJS should pass in three arguments to the functions of the right type`, () => {
+		parseJS({
+			top: "0",
+			right: "0",
+			left: function func({ obj, parent, key, element }) {
+				it(`obj should match the entire object passed in`, () => {
+					expect(obj).toMatchObject({
+						".default": {
+							top: "0",
+							right: "0",
+							left: func,
+						},
+					});
+				});
+
+				it(`parent should match the parent obj`, () => {
+					expect(parent).toMatchObject({
+						top: "0",
+						right: "0",
+						left: func,
+					});
+				});
+
+				it(`key should match the key`, () => {
+					expect(key).toBe("left");
+				});
+
+				it(`element should be a DOM element`, () => {
+					expect(isDOM(element)).toBe(true);
+				});
 			},
 		});
 	});
