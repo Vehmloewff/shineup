@@ -192,4 +192,32 @@ describe(`parseJS`, () => {
 			},
 		});
 	});
+
+	it(`should assign the value of functions that start with '&' symbol to the parent in a recursive manner`, () => {
+		expect(
+			parseJS({
+				top: "0",
+				"&712347": () => {
+					return {
+						right: "0",
+						"&8913242": () => {
+							return {
+								left: "0",
+								"&198324112": () => {
+									return { bottom: "0" };
+								},
+							};
+						},
+					};
+				},
+			})
+		).toMatchObject({
+			".default": {
+				top: "0",
+				right: "0",
+				left: "0",
+				bottom: "0",
+			},
+		});
+	});
 });
