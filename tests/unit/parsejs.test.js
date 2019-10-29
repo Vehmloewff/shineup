@@ -131,7 +131,7 @@ describe(`parseJS`, () => {
 		});
 	});
 
-	it(`must call functions and populate the parent with the result`, () => {
+	it(`should call functions and populate the parent with the result`, () => {
 		expect(
 			parseJS({
 				foreground: {
@@ -149,7 +149,7 @@ describe(`parseJS`, () => {
 		});
 	});
 
-	it(`must call functions and populate the parent with the result in a recursive manner`, () => {
+	it(`should call functions and populate the parent with the result in a recursive manner`, () => {
 		expect(
 			parseJS({
 				foreground: {
@@ -176,4 +176,20 @@ describe(`parseJS`, () => {
 			},
 		});
 	});
+
+	it(`should assign the value of functions that start with '&' symbol to the parent`, () => {
+		expect(
+			parseJS({
+				top: "0",
+				"&background": () => {
+					return { background: "red" };
+				},
+			})
+		).toMatchObject({
+			".default": {
+				top: "0",
+				background: "red",
+			},
+		});
+	})
 });
