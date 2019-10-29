@@ -191,5 +191,5 @@ describe(`parseJS`, () => {
 				background: "red",
 			},
 		});
-	})
+	});
 });
