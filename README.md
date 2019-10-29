@@ -209,6 +209,25 @@ Any values of type `function` will be called with a { parent: object, key: strin
 }
 ```
 
+Any keys that start with an `&` symbol and whose value is of type `function` will be called just like in the previous example, except, the returned value will be merged into the parent value.
+
+This example will produce the same output as the above example:
+
+```js
+{
+	"headerInner": {
+		color: "red",
+		"&boxShadow": ({ parent, key }) => {
+			if (!parent.boxShadow && !parent["box-shadow"]) {
+				return {
+					boxShadow: "2px 2px 2px 2px black",
+				}
+			}
+		}
+	}
+}
+```
+
 ### attachStyles(obj: object, key: string): void
 
 Stringifys the `obj` paramater, which should be valid css keys and values, to the head. If this function is called twice with the same key, it will override an existing `style` element instead of creating a new one.
