@@ -20,13 +20,13 @@ No complex setup or installation is neccesary. Just import and go:
 
 ```html
 <script>
-	import { createStyles } from 'shineup';
+	import { createStyles } from "shineup";
 
 	$: css = createStyles(
 		{
-			color: 'red',
+			color: "red",
 		},
-		'my-component'
+		"my-component"
 	);
 </script>
 
@@ -39,28 +39,28 @@ You can define as many classes as you need:
 
 ```html
 <script>
-	import { createStyles, createKey } from 'shineup';
+	import { createStyles, createKey } from "shineup";
 
 	const key = createKey();
 
 	$: css = createStyles(
 		{
 			background: {
-				height: '50px',
-				width: '200px',
+				height: "50px",
+				width: "200px",
 				// ...
 			},
 			foreground: {
-				background: 'green',
-				transition: 'background 0.5s',
+				background: "green",
+				transition: "background 0.5s",
 
 				// Keys starting with a `$` will be appended
 				// onto the parent selector.
-				'$ h1': {
-					color: 'red',
+				"$ h1": {
+					color: "red",
 				},
-				'$:hover': {
-					background: 'red',
+				"$:hover": {
+					background: "red",
 				},
 			},
 		},
@@ -83,21 +83,21 @@ Plugins just increase productivity:
 
 ```html
 <script>
-	import { createStyles, get } from 'shineup';
+	import { createStyles, get } from "shineup";
 
 	$: css = createStyles(
 		{
-			...get('cover')(3, {
+			...get("cover")(3, {
 				fixed: true,
 			}),
-			...get('scrollable')(),
-			...get('scrollbar')({
+			...get("scrollable")(),
+			...get("scrollbar")({
 				thumb: {
-					color: 'red',
+					color: "red",
 				},
 			}),
 		},
-		'my-component'
+		"my-component"
 	);
 </script>
 
@@ -122,13 +122,13 @@ Example:
 
 ```html
 <script>
-	import { createStyles } from 'shineup';
+	import { createStyles } from "shineup";
 
 	$: css = createStyles(
 		{
-			color: 'red',
+			color: "red",
 		},
-		'my-component'
+		"my-component"
 	);
 </script>
 
@@ -233,7 +233,7 @@ While you can use [`get`](#get) to get a plugin, it is shorter to just do someth
 
 ```html
 <script>
-	import { createStyles, $ } from 'shineup';
+	import { createStyles, $ } from "shineup";
 
 	$: css = createStyles(
 		{
@@ -243,11 +243,11 @@ While you can use [`get`](#get) to get a plugin, it is shorter to just do someth
 			...$.scrollable(),
 			...$.scrollbar({
 				thumb: {
-					color: 'red',
+					color: "red",
 				},
 			}),
 		},
-		'my-component'
+		"my-component"
 	);
 </script>
 
@@ -267,7 +267,7 @@ At it's core, a plugin is just a function that returns an object:
 ```js
 function myPlugin() {
 	return {
-		color: 'red',
+		color: "red",
 	};
 }
 ```
@@ -275,11 +275,11 @@ function myPlugin() {
 After your plugin is defined it will need to be added to the main package:
 
 ```js
-import { registerPlugin } from 'shineup';
+import { registerPlugin } from "shineup";
 
 function myPlugin() {
 	return {
-		color: 'red',
+		color: "red",
 	};
 }
 
@@ -292,7 +292,7 @@ It is recomended to have your plugin export a function that creates and register
 module.exports = ({ registerPlugin }) => {
 	function myPlugin() {
 		return {
-			color: 'red',
+			color: "red",
 		};
 	}
 
@@ -303,8 +303,8 @@ module.exports = ({ registerPlugin }) => {
 Then the user just has to:
 
 ```js
-import * as shineup from 'shineup';
-import color from 'shineup-plugin-color';
+import * as shineup from "shineup";
+import color from "shineup-plugin-color";
 
 color(shineup);
 ```
