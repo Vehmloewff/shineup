@@ -18,7 +18,6 @@
 	"devDependencies": {
 		"eslint": "^6.4.0",
 		"eslint-config-prettier": "^6.3.0",
-		"is-dom": "^1.1.0",
 		"jest": "^24.9.0",
 		"prettier": "^1.18.2"
 	},
@@ -27,6 +26,7 @@
 		"url": "https://github.com/Vehmloewff/todo"
 	},
 	"dependencies": {
+		"css-in-js-utils": "^3.0.2",
 		"flat": "^5.0.0"
 	}
 }

@@ -1,5 +1,4 @@
 const parseJS = require("../../lib/parsejs");
-const isDOM = require("is-dom");
 
 describe(`parseJS`, () => {
 	it(`it should return a css obj`, () => {
