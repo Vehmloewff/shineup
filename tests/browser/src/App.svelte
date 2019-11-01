@@ -1,15 +1,24 @@
 <script>
-	import { createStyles, ready } from "../../../";
+	import { createScope, ready } from "../../../";
 
 	let changeColor = false;
 
-	$: css = createStyles({
+	const scope = createScope();
+
+	$: css = scope.style({
 		header: {
 			$h1: {
 				color: changeColor ? "red" : "blue",
 			},
 			$p: {
-				color: "red",
+				color: () => {
+					return "red";
+				},
+				"&somethingRandom": () => {
+					return {
+						border: "1px solid orange",
+					};
+				},
 			},
 		},
 		button: {

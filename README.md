@@ -2,8 +2,6 @@
 
 An easy and flexibile css-in-js implementation for [Svelte](https://svelte.dev).
 
-Powerfull, effiecent, easy, and complete with [plugin](#plugins) support.
-
 ## Installation
 
 ```sh
