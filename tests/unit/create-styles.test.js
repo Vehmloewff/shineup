@@ -14,7 +14,7 @@ describe(`createStyles`, () => {
 				},
 				"com"
 			)
-		).toBe(`.com.default`);
+		).toBe(`com default`);
 	});
 
 	it(`should return an object`, () => {
@@ -28,7 +28,7 @@ describe(`createStyles`, () => {
 				"com"
 			)
 		).toMatchObject({
-			background: `.com.background`,
+			background: `com background`,
 		});
 	});
 
@@ -42,7 +42,7 @@ describe(`createStyles`, () => {
 				},
 				"com"
 			).get("background")
-		).toBe(`.com.background`);
+		).toBe(`com background`);
 	});
 
 	it(`should yell at us when invalid params are passed`, () => {

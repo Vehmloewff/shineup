@@ -4,8 +4,10 @@
 	"description": "An easy and flexibile css-in-js implementation for Svelte",
 	"main": "index.js",
 	"scripts": {
+		"setup:test": "cd tests/browser && npm i",
+		"setup": "npm i && npm run setup:test",
 		"test": "jest --verbose",
-		"test:watch": "jest --watch --verbose",
+		"test:browser": "cd tests/browser && npm run dev",
 		"format": "prettier --write \"./**\"",
 		"lint": "eslint . && npm run format",
 		"lint:test": "eslint . && npm run format:test",
@@ -18,8 +20,11 @@
 	"devDependencies": {
 		"eslint": "^6.4.0",
 		"eslint-config-prettier": "^6.3.0",
+		"eslint-plugin-svelte3": "^2.7.3",
 		"jest": "^24.9.0",
-		"prettier": "^1.18.2"
+		"prettier": "^1.18.2",
+		"prettier-plugin-svelte": "^0.7.0",
+		"svelte": "^3.12.1"
 	},
 	"repository": {
 		"type": "git",

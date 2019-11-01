@@ -9,5 +9,6 @@
 		"ecmaVersion": 2019,
 		"sourceType": "module"
 	},
+	"plugins": ["svelte3"],
 	"rules": {}
 }
