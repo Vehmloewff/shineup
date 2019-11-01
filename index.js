@@ -11,5 +11,4 @@ module.exports = {
 		return { style };
 	},
 	createStyles,
-	ready: require("./lib/ready").ready,
 };

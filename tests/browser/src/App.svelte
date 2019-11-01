@@ -1,5 +1,5 @@
 <script>
-	import { createScope, ready } from "../../../";
+	import { createScope } from "../../../";
 
 	let changeColor = false;
 
@@ -25,8 +25,6 @@
 			background: "green",
 		},
 	});
-
-	ready();
 </script>
 
 <div class={css.header}>
