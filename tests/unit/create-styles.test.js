@@ -47,7 +47,7 @@ describe(`createStyles`, () => {
 
 	it(`should yell at us when invalid params are passed`, () => {
 		expect(() => createStyles("", "com")).toThrow();
-		expect(() => createStyles(null, "com")).toThrow();
+		expect(() => createStyles(0, "com")).toThrow();
 		expect(() => createStyles({}, null)).toThrow();
 		expect(() => createStyles({}, {})).toThrow();
 	});
