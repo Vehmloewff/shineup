@@ -271,11 +271,20 @@ attachStyles({
 
 Sure!
 
+Fork repo. Then...
+
 ```sh
 git clone https://github.com/[your-username]/shineup
 cd shineup
-npm i
+npm setup
+
 npm test -- --watch
+```
+
+To run the test app:
+
+```sh
+npm run test:browser
 ```
 
 Issues and PR's are welcome!
