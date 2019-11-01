@@ -6,7 +6,7 @@ describe(`parseJS`, () => {
 			parseJS({
 				background: "red",
 				"font-size": "20px",
-			})
+			}).css
 		).toMatchObject({
 			".default": {
 				background: "red",
@@ -20,7 +20,7 @@ describe(`parseJS`, () => {
 			parseJS({
 				background: "red",
 				fontSize: "20px",
-			})
+			}).css
 		).toMatchObject({
 			".default": {
 				background: "red",
@@ -36,7 +36,7 @@ describe(`parseJS`, () => {
 					background: "red",
 					fontSize: "20px",
 				},
-			})
+			}).css
 		).toMatchObject({
 			".background": {
 				background: "red",
@@ -55,7 +55,7 @@ describe(`parseJS`, () => {
 					background: "red",
 					fontSize: "20px",
 				},
-			})
+			}).css
 		).toMatchObject({
 			".foreground": {
 				top: "0",
@@ -74,7 +74,7 @@ describe(`parseJS`, () => {
 				$h1: {
 					left: "0",
 				},
-			})
+			}).css
 		).toMatchObject({
 			".default": {
 				top: "0",
@@ -94,7 +94,7 @@ describe(`parseJS`, () => {
 						left: "0",
 					},
 				},
-			})
+			}).css
 		).toMatchObject({
 			".foreground": {
 				top: "0",
@@ -117,7 +117,7 @@ describe(`parseJS`, () => {
 						},
 					},
 				},
-			})
+			}).css
 		).toMatchObject({
 			".foreground": {
 				top: "0",
@@ -140,7 +140,7 @@ describe(`parseJS`, () => {
 						return "red";
 					},
 				},
-			})
+			}).css
 		).toMatchObject({
 			".foreground": {
 				top: "0",
@@ -164,7 +164,7 @@ describe(`parseJS`, () => {
 						};
 					},
 				},
-			})
+			}).css
 		).toMatchObject({
 			".foreground": {
 				top: "0",
@@ -184,7 +184,7 @@ describe(`parseJS`, () => {
 				"&background": () => {
 					return { background: "red" };
 				},
-			})
+			}).css
 		).toMatchObject({
 			".default": {
 				top: "0",
@@ -210,7 +210,7 @@ describe(`parseJS`, () => {
 						},
 					};
 				},
-			})
+			}).css
 		).toMatchObject({
 			".default": {
 				top: "0",
@@ -267,11 +267,11 @@ describe(`parseJS`, () => {
 	});
 
 	it(`should still work when there are no params passed`, () => {
-		expect(parseJS()).toMatchObject({});
+		expect(parseJS().css).toMatchObject({});
 	});
 
 	it(`should work when there is only one key:value pair passed`, () => {
-		expect(parseJS({ color: "red" })).toMatchObject({
+		expect(parseJS({ color: "red" }).css).toMatchObject({
 			".default": {
 				color: "red",
 			},
