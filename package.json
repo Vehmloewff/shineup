@@ -15,7 +15,14 @@
 		"preversion": "npm run test && npm run lint:test",
 		"postversion": "git push && git push --tags && rm -rf build/temp && npm publish"
 	},
-	"keywords": [],
+	"keywords": [
+		"svelte",
+		"css-in-js",
+		"flexible",
+		"css",
+		"js",
+		"shine"
+	],
 	"author": "Vehmloewff",
 	"license": "MIT",
 	"devDependencies": {
