@@ -1,6 +1,6 @@
 # shineup
 
-An easy and flexibile css-in-js implementation for [Svelte](https://svelte.dev).
+A simple and flexible css-in-js implementation for [Svelte](https://svelte.dev).
 
 ## Installation
 
