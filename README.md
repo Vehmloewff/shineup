@@ -146,7 +146,7 @@ Example with an object returned:
 <button class="{css.button}">Button</button>
 ```
 
-### createStyles(obj: object, key?: string): object | string
+### createStyles(obj: object, key?: string): object|string
 
 Almost the same as `createScope().style`. The only difference is that with this method, a `key` option is passed in.
 
