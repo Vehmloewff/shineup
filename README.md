@@ -12,9 +12,37 @@ There is no need to install it as `dependency` because it will be bundled with r
 
 ## Brief Overview
 
-### Easy
-
 No complex setup or installation is neccesary. Just import and go:
+
+```html
+<script>
+	import { createStyles } from "shineup";
+
+	$: css = createStyles({
+		color: "red",
+	});
+</script>
+
+<div class="{css}" />
+```
+
+If you have more than one component it is recomended that you scope them:
+
+```html
+<script>
+	import { createScope } from "shineup";
+
+	const scope = createScope();
+
+	$: css = scope.style({
+		color: "red",
+	});
+</script>
+
+<div class="{css}" />
+```
+
+or
 
 ```html
 <script>
@@ -24,46 +52,37 @@ No complex setup or installation is neccesary. Just import and go:
 		{
 			color: "red",
 		},
-		"my-component"
+		"something-that-is-different-with-each-component"
 	);
 </script>
 
 <div class="{css}" />
 ```
 
-### Scaleable
-
 You can define as many classes as you need:
 
 ```html
 <script>
-	import { createStyles, createKey } from "shineup";
+	import { createScope } from "shineup";
 
-	const key = createKey();
+	const scope = createScope();
 
-	$: css = createStyles(
-		{
-			background: {
-				height: "50px",
-				width: "200px",
-				// ...
+	$: css = scope.style({
+		background: {
+			height: "50px",
+			width: "200px",
+		},
+		foreground: {
+			background: "green",
+			transition: "background 0.5s",
+			$h1: {
+				color: "red",
 			},
-			foreground: {
-				background: "green",
-				transition: "background 0.5s",
-
-				// Keys starting with a `$` will be appended
-				// onto the parent selector.
-				"$ h1": {
-					color: "red",
-				},
-				"$:hover": {
-					background: "red",
-				},
+			":hover": {
+				background: "red",
 			},
 		},
-		key
-	);
+	});
 </script>
 
 <div class="{css.background}" />
@@ -74,35 +93,6 @@ You can define as many classes as you need:
 	<h1>Hello World!</h1>
 </div>
 ```
-
-### Efficenct
-
-Plugins just increase productivity:
-
-```html
-<script>
-	import { createStyles, get } from "shineup";
-
-	$: css = createStyles(
-		{
-			...get("cover")(3, {
-				fixed: true,
-			}),
-			...get("scrollable")(),
-			...get("scrollbar")({
-				thumb: {
-					color: "red",
-				},
-			}),
-		},
-		"my-component"
-	);
-</script>
-
-<div class="{css}" />
-```
-
-NOTE: Before a plugin can be used, it must be [initialized](#plugins).
 
 ## API
 
@@ -229,106 +219,6 @@ This example will produce the same output as the above example:
 ### attachStyles(obj: object, key: string): void
 
 Stringifys the `obj` paramater, which should be valid css keys and values, to the head. If this function is called twice with the same key, it will override an existing `style` element instead of creating a new one.
-
-### get(plugin: string): any
-
-Returns a plugin registered with the [`add`](#add) method.
-
-### registerPlugin(name: string, plugin: function, options: object): void
-
-Adds a plugin. For more information see [developing a plugin](developing-a-plugin).
-
-`options` is an object that can contain the following properties:
-
-### \$: object
-
-This object is populated with all the registered plugins.
-
-While you can use [`get`](#get) to get a plugin, it is shorter to just do something like this:
-
-```html
-<script>
-	import { createStyles, $ } from "shineup";
-
-	$: css = createStyles(
-		{
-			...$.cover(3, {
-				fixed: true,
-			}),
-			...$.scrollable(),
-			...$.scrollbar({
-				thumb: {
-					color: "red",
-				},
-			}),
-		},
-		"my-component"
-	);
-</script>
-
-<div class="{css}" />
-```
-
-## Plugins
-
-Use plugins via [`get`](#get), or [`$`]($). [Here](#efficenct) is an example.
-
-Refer to the README of each plugin for instructions on how to initialize it.
-
-### Developing a plugin
-
-At it's core, a plugin is just a function that returns an object:
-
-```js
-function myPlugin() {
-	return {
-		color: "red",
-	};
-}
-```
-
-After your plugin is defined it will need to be added to the main package:
-
-```js
-import { registerPlugin } from "shineup";
-
-function myPlugin() {
-	return {
-		color: "red",
-	};
-}
-
-registerPlugin(`myPlugin`, myPlugin);
-```
-
-It is recomended to have your plugin export a function that creates and registers itself.
-
-```js
-module.exports = ({ registerPlugin }) => {
-	function myPlugin() {
-		return {
-			color: "red",
-		};
-	}
-
-	registerPlugin(`myPlugin`, myPlugin);
-};
-```
-
-Then the user just has to:
-
-```js
-import * as shineup from "shineup";
-import color from "shineup-plugin-color";
-
-color(shineup);
-```
-
-NOTE: One plugin can register multipile functions.
-
-#### Naming conventions
-
-If you develop a plugin, it is recomended to name it `shineup-plugin-[name]`.
 
 ## Can I contribute?
 
