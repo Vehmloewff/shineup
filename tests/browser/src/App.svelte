@@ -11,7 +11,6 @@
 			$p: {
 				color: "red",
 			},
-			color: "black",
 		},
 		button: {
 			background: "green",
