@@ -15,7 +15,7 @@
 		},
 		button: {
 			background: "green",
-		}
+		},
 	});
 
 	ready();
