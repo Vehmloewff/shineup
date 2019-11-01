@@ -1,22 +1,14 @@
-/**
- * Parses the JS into a css string
- * @param {Object} js Javascript object to be parsed
- * @returns {String} The parsed css
- */
-function parseJS(js = {}) {
-	return `${js}`;
-}
-
-/**
- * Simplify a JS object
- * @param {Object} js The Javascript object to be simplified
- * @returns {{ css: Object, get: (name) => void}}
- */
-function simplifyJS(js = {}) {
-	return js;
-}
+const createStyles = require("./lib/create-styles");
+const random = require("randomatic");
 
 module.exports = {
-	parseJS,
-	simplifyJS,
+	parseJS: require("./lib/parsejs"),
+	attachStyles: require("./lib/attach-styles"),
+	createScope: () => {
+		const key = `s${random("aA0", 10)}`;
+		const style = (obj) => createStyles(obj, key);
+
+		return { style };
+	},
+	createStyles,
 };
