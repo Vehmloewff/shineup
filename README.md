@@ -96,32 +96,61 @@ You can define as many classes as you need:
 
 ## API
 
-### createStyles(obj: object, key: string): object | string
+### createScope(): object
 
-Create a stylesheet and append it to the DOM. If this function is called after the stylesheet has been added to the DOM it will just be updated.
+Returns a `{ style }` object.
 
-`obj` must match the requirements of [Input Object](#input-object).
+#### style(obj: object): object|string
 
-The `key` is the unique indentifier used to avoid conflicts.
+Creates a stylesheet and appends it to the DOM. If this function is called after the stylesheet has been added to the DOM that stylesheet will just be updated.
+
+`obj` is passed directly to [`parseJS`](#parsejs).
 
 The result of this function will be either a string, or an object with each key as a string and a `get(class: string)` method. These strings are intended to be plugged right into your template as the class name of the element you want to modify.
 
-Example:
+Example with a string returned:
 
 ```html
 <script>
-	import { createStyles } from "shineup";
+	import { createScope } from "shineup";
 
-	$: css = createStyles(
-		{
-			color: "red",
-		},
-		"my-component"
-	);
+	const scope = createScope();
+
+	$: css = scope.style({
+		color: "red",
+	});
 </script>
 
 <div class="{css}" />
 ```
+
+Example with an object returned:
+
+```html
+<script>
+	import { createScope } from "shineup";
+
+	const scope = createScope();
+
+	$: css = scope.style(
+		header: {
+			color: "red",
+		},
+		button: {
+			color: "blue",
+		}
+	);
+</script>
+
+<div class="{css.header}">Header</div>
+<button class="{css.button}">Button</button>
+```
+
+### createStyles(obj: object, key?: string): object | string
+
+Almost the same as `createScope().style`. The only difference is that with this method, a `key` option is passed in.
+
+`key` is an string used to for scoping. Default is `"my-component"`.
 
 ### parseJS(obj: object): object
 
@@ -130,6 +159,11 @@ Parses `obj` into an object whose keys and values are valid css.
 `shineup` revolves around the use of classes. While traditional CSS frameworks provide a myrmaid of classes that you can assign to your elements, this package is aimed at making it easy to have one class per component, and then you can dynamicly assign styles to that class.
 
 All keys are allowed to be in the camel case (`boxShadow`) or hyphenated (`box-shadow`) formats.
+
+Returns a `{ css, classes }` object.
+
+-   `css` is just a valid css version of `obj`.
+-   `classes` is an object that contains all of the classes in `obj` (if `obj` does not contain an classes `shineup` will assign it to `default` class) linked to their selector.
 
 Examples:
 
@@ -219,6 +253,19 @@ This example will produce the same output as the above example:
 ### attachStyles(obj: object, key: string): void
 
 Stringifys the `obj` paramater, which should be valid css keys and values, to the head. If this function is called twice with the same key, it will override an existing `style` element instead of creating a new one.
+
+Example:
+
+```js
+attachStyles({
+	".something": {
+		border: "1px solid black",
+	}
+	".other": {
+		border: "1px solid blue",
+	}
+}, "some-key")
+```
 
 ## Can I contribute?
 
