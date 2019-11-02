@@ -3,6 +3,7 @@
 	"version": "1.0.1",
 	"description": "A simple and flexible css-in-js implementation for Svelte",
 	"main": "index.js",
+	"module": "index.js",
 	"scripts": {
 		"setup:test": "cd tests/browser && npm i",
 		"setup": "npm i && npm run setup:test",
