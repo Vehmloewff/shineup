@@ -39,6 +39,7 @@
 		"prettier-plugin-svelte": "^0.7.0",
 		"svelte": "^3.12.1"
 	},
+	"homepage": "https://github.com/Vehmloewff/shineup#readme",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Vehmloewff/todo"
