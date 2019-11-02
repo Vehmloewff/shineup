@@ -24,7 +24,10 @@
 		"js",
 		"shine"
 	],
-	"author": "Vehmloewff",
+	"author": {
+		"url": "https://github.com/Vehmloewff",
+		"name": "Elijah Mooring"
+	},
 	"license": "MIT",
 	"devDependencies": {
 		"eslint": "^6.4.0",
