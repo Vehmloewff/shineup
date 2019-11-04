@@ -5,10 +5,8 @@ A simple and flexible css-in-js implementation for [Svelte](https://svelte.dev).
 ## Installation
 
 ```sh
-npm i shineup -D
+npm i shineup
 ```
-
-There is no need to install it as `dependency` because it will be bundled with rollup, or webpack, or whatever bundler you use.
 
 ## Brief Overview
 
