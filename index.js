@@ -1,14 +1,5 @@
 const createStyles = require("./lib/create-styles");
-
-const random = () => {
-	const string = String(
-		Math.random() *
-		Math.pow(10, Math.random() * 200) *
-		Math.random() * Math.pow(10, Math.random() * 200)
-	) + '-shine';
-
-	return string.split('.').join('').split('+').join('')
-};
+const random = require("./lib/random");
 
 module.exports = {
 	parseJS: require("./lib/parsejs"),
