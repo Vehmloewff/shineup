@@ -28,13 +28,15 @@ If you have more than one component it is recomended that you scope them:
 
 ```html
 <script>
-	import { createScope } from "shineup";
+	import { createScope, ready } from "shineup";
 
 	const scope = createScope();
 
 	$: css = scope.style({
 		color: "red",
 	});
+
+	ready();
 </script>
 
 <div class="{css}" />
@@ -52,6 +54,8 @@ or
 		},
 		"something-that-is-different-with-each-component"
 	);
+
+	ready();
 </script>
 
 <div class="{css}" />
@@ -81,6 +85,8 @@ You can define as many classes as you need:
 			},
 		},
 	});
+
+	ready();
 </script>
 
 <div class="{css.background}" />
@@ -138,6 +144,8 @@ Example with an object returned:
 			color: "blue",
 		}
 	);
+
+	ready();
 </script>
 
 <div class="{css.header}">Header</div>
@@ -291,4 +299,4 @@ Don't forget to `npm run lint` before commiting!
 
 ## License
 
-[MIT]()
+[MIT](/LICENSE)
