@@ -46,7 +46,6 @@
 	},
 	"dependencies": {
 		"css-in-js-utils": "^3.0.2",
-		"flat": "^5.0.0",
-		"simple-random": "^1.0.3"
+		"flat": "^5.0.0"
 	}
 }
