@@ -5,7 +5,7 @@ describe(`random`, () => {
 		const id = random(10);
 
 		expect(id).toMatch(/^[a-z0-9A-Z]+$/);
-        expect(id.length).toBe(10);
-        expect(random(200).length).toBe(200)
+		expect(id.length).toBe(10);
+		expect(random(200).length).toBe(200);
 	});
 });
