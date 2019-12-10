@@ -1,6 +1,6 @@
 {
 	"name": "shineup",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A simple and flexible css-in-js implementation for Svelte",
 	"main": "index.js",
 	"module": "index.js",
