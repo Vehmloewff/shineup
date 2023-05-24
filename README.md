@@ -1,3 +1,5 @@
+> No longer maintained
+
 # shineup
 
 A simple and flexible css-in-js implementation for [Svelte](https://svelte.dev).
